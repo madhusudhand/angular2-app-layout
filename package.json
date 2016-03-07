@@ -5,7 +5,9 @@
   "readme": "README.md",
   "main": "Gruntfile.js",
   "scripts": {
-    "start": "concurrent \"node server.js\" \"grunt watch\""
+    "dev": "concurrent \"npm run lite\" \"npm run gruntDev\"",
+    "lite": "lite-server",
+    "gruntDev": "grunt"
   },
   "repository": {
     "type": "git",
@@ -17,15 +19,6 @@
   "author": "Madhusudhan Dollu",
   "license": "MIT",
   "homepage": "https://github.com/madhusudhand/angular2-boilerplate/blob/master/README.md",
-  "devDependencies": {
-    "concurrently": "^2.0.0",
-    "finalhandler": "^0.4.1",
-    "grunt": "^0.4.5",
-    "grunt-contrib-concat": "^1.0.0",
-    "grunt-ts": "^5.3.2",
-    "grunt-typescript": "^0.8.0",
-    "serve-static": "^1.10.2"
-  },
   "dependencies": {
     "angular2": "^2.0.0-beta.8",
     "es6-promise": "^3.1.2",
@@ -33,5 +26,15 @@
     "reflect-metadata": "^0.1.2",
     "rxjs": "^5.0.0-beta.2",
     "zone.js": "^0.5.15"
+  },
+  "devDependencies": {
+    "concurrently": "^2.0.0",
+    "finalhandler": "^0.4.1",
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^1.0.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-ts": "^5.3.2",
+    "lite-server": "^2.1.0",
+    "serve-static": "^1.10.2"
   }
 }
