@@ -3,26 +3,26 @@ html
   head
     title Angular 2 App
     meta(name="viewport" content="width=device-width, initial-scale=1")
-    link(rel="stylesheet" href="app.min.css")
-  body(ng-app="app")
+    //- link(rel="stylesheet" href="app.min.css")
+  body
     h1 Hello World !!
-    my-app Loading...
+    app Loading...
     
 
     
-    script(src="app.min.js")
+    //- script(src="app.min.js")
 
       
     //- 1. Load libraries
     //- IE required polyfills, in this exact order
-    script(src="node_modules/es6-shim/es6-shim.min.js")
-    script(src="node_modules/systemjs/dist/system-polyfills.js")
-    script(src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js")
+    script(src="../node_modules/es6-shim/es6-shim.min.js")
+    script(src="../node_modules/systemjs/dist/system-polyfills.js")
+    script(src="../node_modules/angular2/es6/dev/src/testing/shims_for_IE.js")
 
-    script(src="node_modules/angular2/bundles/angular2-polyfills.js")
-    script(src="node_modules/systemjs/dist/system.src.js")
-    script(src="node_modules/rxjs/bundles/Rx.js")
-    script(src="node_modules/angular2/bundles/angular2.dev.js")
+    script(src="../node_modules/angular2/bundles/angular2-polyfills.js")
+    script(src="../node_modules/systemjs/dist/system.src.js")
+    script(src="../node_modules/rxjs/bundles/Rx.js")
+    script(src="../node_modules/angular2/bundles/angular2.dev.js")
 
     script
       | System.config({
@@ -33,5 +33,5 @@ html
       |     }
       |   }
       | });
-      | System.import('app/main')
+      | System.import('build/bootstrap')
       |       .then(null, console.error.bind(console));

@@ -102,14 +102,14 @@ module.exports = function(grunt){
       }
     },
 
-    // copy: {
-    //   dev: {
-    //     expand: true,
-    //     cwd: '<%= temp_dir %>/',
-    //     src: ['index.html'],
-    //     dest: '<%= build_dir %>/'
-    //   }
-    // },
+    copy: {
+      dev: {
+        expand: true,
+        cwd: '<%= temp_dir %>/',
+        src: ['*.js','**/*.js'],
+        dest: '<%= build_dir %>/'
+      }
+    },
 
 
     watch: {
@@ -143,7 +143,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jade');
-  // grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-ts');
 
@@ -151,7 +151,7 @@ module.exports = function(grunt){
   grunt.initConfig(grunt.util._.extend(config, build_config));
 
   grunt.registerTask('default', ['clean:pre_build']);
-  grunt.registerTask('dev', ['clean:pre_build','jade:dev','ts','concat','sass']);
+  grunt.registerTask('dev', ['clean:pre_build','jade:dev','ts','concat:sass','sass','copy']);
   grunt.registerTask('dist', ['clean:pre_build','jade:dist','concat','sass','cssmin','uglify','clean:post_build']);
 
 }
