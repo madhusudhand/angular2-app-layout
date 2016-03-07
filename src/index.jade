@@ -1,18 +1,37 @@
 doctype html
 html
   head
-    title Hello world!!
-    link(rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css")
-    link(rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css")
+    title Angular 2 App
+    meta(name="viewport" content="width=device-width, initial-scale=1")
     link(rel="stylesheet" href="app.min.css")
   body(ng-app="app")
-    h1 Hello world!!
+    h1 Hello World !!
+    my-app Loading...
     
 
-    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js")
-    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js")
-    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js")
-    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js")
-    script(src="//ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js")
-    script(src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js")
+    
     script(src="app.min.js")
+
+      
+    //- 1. Load libraries
+    //- IE required polyfills, in this exact order
+    script(src="node_modules/es6-shim/es6-shim.min.js")
+    script(src="node_modules/systemjs/dist/system-polyfills.js")
+    script(src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js")
+
+    script(src="node_modules/angular2/bundles/angular2-polyfills.js")
+    script(src="node_modules/systemjs/dist/system.src.js")
+    script(src="node_modules/rxjs/bundles/Rx.js")
+    script(src="node_modules/angular2/bundles/angular2.dev.js")
+
+    script
+      | System.config({
+      |   packages: {        
+      |     app: {
+      |       format: 'register',
+      |       defaultExtension: 'js'
+      |     }
+      |   }
+      | });
+      | System.import('app/main')
+      |       .then(null, console.error.bind(console));

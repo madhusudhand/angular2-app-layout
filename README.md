@@ -14,3 +14,7 @@ npm install
 # Atom
 
 install atom-typescript plugin
+
+# Guidelines
+
+Keep the test files in the same directory of Components
