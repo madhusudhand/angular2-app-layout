@@ -103,6 +103,27 @@ module.exports = function(grunt){
     },
 
     copy: {
+      modules: {
+        expand: true,
+        cwd: 'node_modules/',
+        src: ['angular2/**', 'rxjs/**'],
+        dest: '<%= build_dir %>/'
+      },
+      dependencies: {
+        expand: true,
+        flatten: true,
+        cwd: 'node_modules/',
+        src: [
+              'angular2/es6/dev/src/testing/shims_for_IE.js',
+              'angular2/bundles/angular2-polyfills.js',
+              'angular2/bundles/angular2.dev.js',
+              'rxjs/bundles/Rx.js',
+              'systemjs/dist/system.src.js',
+              'systemjs/dist/system-polyfills.js',
+              'es6-shim/es6-shim.min.js'
+             ],
+        dest: '<%= build_dir %>/lib/'
+      },
       dev: {
         expand: true,
         cwd: '<%= temp_dir %>/',
@@ -151,7 +172,8 @@ module.exports = function(grunt){
   grunt.initConfig(grunt.util._.extend(config, build_config));
 
   grunt.registerTask('default', ['clean:pre_build']);
-  grunt.registerTask('dev', ['clean:pre_build','jade:dev','ts','concat:sass','sass','copy']);
-  grunt.registerTask('dist', ['clean:pre_build','jade:dist','concat','sass','cssmin','uglify','clean:post_build']);
+  grunt.registerTask('init', ['clean:pre_build', 'copy:modules', 'copy:dependencies']);
+  grunt.registerTask('dev', ['jade:dev','ts','concat:sass','sass','copy:dev']);
+  grunt.registerTask('dist', ['init','jade:dist','concat','sass','cssmin','uglify','clean:post_build']);
 
 }

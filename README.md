@@ -7,7 +7,9 @@ install python
 git clone https://github.com/madhusudhand/angular2-quickstart.git
 npm install
 
+npm run pre_start
 npm start
+
 npm run dist
 npm run publish
 
