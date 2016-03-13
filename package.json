@@ -1,11 +1,11 @@
 {
-  "name": "angular2-boilerplate",
+  "name": "angular2-quickstart",
   "version": "1.0.0",
   "description": "Angular 2 boilerplate to kick start your new project",
   "readme": "README.md",
   "main": "Gruntfile.js",
   "scripts": {
-    "start": "concurrent \"npm run lite\"",
+    "start": "concurrent \"npm run grunt:dev\" \"npm run lite\"",
     "dist": "concurrent \"npm run grunt:dist\" \"npm run lite\"",
     "lite": "lite-server",
     "tsc": "tsc",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/madhusudhand/angular2-boilerplate"
+    "url": "git+https://github.com/madhusudhand/angular2-quickstart"
   },
   "keywords": [
     "angular"
   ],
   "author": "Madhusudhan Dollu",
   "license": "MIT",
-  "homepage": "https://github.com/madhusudhand/angular2-boilerplate/blob/master/README.md",
+  "homepage": "https://github.com/madhusudhand/angular2-quickstart/blob/master/README.md",
   "dependencies": {
     "angular2": "^2.0.0-beta.8",
     "es6-promise": "^3.1.2",
