@@ -3,17 +3,14 @@ Angular 2 boilerplate to kick start your new project
 
 # Setup
 install python
-install lite-server
 
-
-git clone https://github.com/madhusudhand/angular2-boilerplate.git
-npm install -g typescript
+git clone https://github.com/madhusudhand/angular2-quickstart.git
 npm install
 
+npm start
+npm run dist
+npm run publish
 
-# Atom
-
-install atom-typescript plugin
 
 # Guidelines
 

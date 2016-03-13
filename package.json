@@ -7,6 +7,7 @@
   "scripts": {
     "start": "concurrent \"npm run grunt:dev\" \"npm run lite\"",
     "dist": "concurrent \"npm run grunt:dist\" \"npm run lite\"",
+    "publish": "grunt dist",
     "lite": "lite-server",
     "tsc": "tsc",
     "grunt": "grunt",
@@ -24,12 +25,12 @@
   "license": "MIT",
   "homepage": "https://github.com/madhusudhand/angular2-quickstart/blob/master/README.md",
   "dependencies": {
-    "angular2": "^2.0.0-beta.8",
+    "angular2": "^2.0.0-beta.9",
     "es6-promise": "^3.1.2",
     "es6-shim": "^0.33.13",
     "reflect-metadata": "^0.1.2",
     "rxjs": "^5.0.0-beta.2",
-    "systemjs": "^0.19.23",
+    "systemjs": "^0.19.24",
     "zone.js": "^0.5.15"
   },
   "devDependencies": {
