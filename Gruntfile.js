@@ -124,6 +124,12 @@ module.exports = function(grunt){
              ],
         dest: '<%= build_dir %>/lib/'
       },
+      assets: {
+        expand: true,
+        cwd: '<%= app_dir %>/',
+        src: ['assets/**'],
+        dest: '<%= build_dir %>/'
+      },
       dev: {
         expand: true,
         cwd: '<%= temp_dir %>/',
@@ -173,7 +179,7 @@ module.exports = function(grunt){
 
   grunt.registerTask('default', ['clean:pre_build']);
   grunt.registerTask('init', ['clean:pre_build', 'copy:modules', 'copy:dependencies']);
-  grunt.registerTask('dev', ['jade:dev','ts','concat:sass','sass','copy:dev']);
+  grunt.registerTask('dev', ['jade:dev','ts','concat:sass','sass','copy:assets', 'copy:dev']);
   grunt.registerTask('dist', ['init','jade:dist','concat','sass','cssmin','uglify','clean:post_build']);
 
 }
