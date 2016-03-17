@@ -11,7 +11,7 @@ module.exports = function(grunt){
       options: {
         force: true
       },
-      pre_build: ['<%= build_dir %>', '<%= temp_dir %>'],
+      pre_build: ['<%= build_dir %>/*', '!<%= build_dir %>/node_modules', '<%= temp_dir %>'],
       post_build: ['<%= temp_dir %>']
     },
 
@@ -79,14 +79,26 @@ module.exports = function(grunt){
       }
     },
 
+    // uglify: {
+    //   options: {
+    //     banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+    //   },
+    //   app: {
+    //     files: {
+    //       '<%= build_dir %>/<%= app_files.js_file %>.min.js': '<%= temp_dir %>/<%= app_files.js_file %>.js'
+    //     }
+    //   }
+    // },
+
     uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-      },
-      app: {
-        files: {
-          '<%= build_dir %>/<%= app_files.js_file %>.min.js': '<%= temp_dir %>/<%= app_files.js_file %>.js'
-        }
+      all: {
+        files: [{
+          expand: true,
+          cwd: '<%= build_dir %>',
+          src: ['*.js', '!*.min.js', 'app/**/*.js', '!app/**/*.min.js'],
+          dest: '<%= build_dir %>',
+          ext: '.js'
+        }]
       }
     },
 
@@ -133,7 +145,7 @@ module.exports = function(grunt){
       dev: {
         expand: true,
         cwd: '<%= temp_dir %>/',
-        src: ['*.js','**/*.js'],
+        src: ['*.js','**/*.js','*.js.map','**/*.js.map'],
         dest: '<%= build_dir %>/'
       }
     },
@@ -148,17 +160,35 @@ module.exports = function(grunt){
       // jade watch
       jade:{
         files: ['<%= app_dir %>/*.jade','<%= app_dir %>/**/*.jade'],
-        tasks: ['jade:app_jade','copy:index']
+        tasks: ['jade:dev']
       },
 
       // js watch
-      js: {
-        files: ['<%= app_dir %>/*.js', '<%= app_dir %>/**/*.js'],
-        tasks: ['concat:app_js','uglify:app']
-      }
+      // js: {
+      //   files: ['<%= app_dir %>/*.js', '<%= app_dir %>/**/*.js'],
+      //   tasks: ['concat:app_js','uglify:app']
+      // }
 
       // sass watch
 
+    },
+
+    browserSync: {
+      dev: {
+        bsFiles: {
+          src : [
+            '<%= build_dir %>/*.css',
+            '<%= build_dir %>/*.html',
+            '<%= build_dir %>/**/*.html',
+            '<%= build_dir %>/*.js',
+            '<%= build_dir %>/**/*.js'
+          ]
+        },
+        options: {
+          watchTask: true,
+          server: './<%= build_dir %>'
+        }
+      }
     }
 
   }; // end of grunt config
@@ -173,13 +203,32 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-ts');
+  grunt.loadNpmTasks('grunt-browser-sync');
 
 
   grunt.initConfig(grunt.util._.extend(config, build_config));
 
   grunt.registerTask('default', ['clean:pre_build']);
-  grunt.registerTask('init', ['clean:pre_build', 'copy:modules', 'copy:dependencies']);
-  grunt.registerTask('dev', ['jade:dev','ts','concat:sass','sass','copy:assets', 'copy:dev']);
-  grunt.registerTask('dist', ['init','jade:dist','concat','sass','cssmin','uglify','clean:post_build']);
+  grunt.registerTask('postinstall', ['copy:dependencies']);
+  grunt.registerTask('dev', [
+    'clean:pre_build',
+    'jade:dev',
+    'ts',
+    'concat:sass',
+    'sass',
+    'copy:assets',
+    'copy:dev',
+    'browserSync',
+    'watch'
+  ]);
+  grunt.registerTask('dist', [
+    'init',
+    'jade:dist',
+    'concat',
+    'sass',
+    'cssmin',
+    'uglify',
+    'clean:post_build'
+  ]);
 
 }

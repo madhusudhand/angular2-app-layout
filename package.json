@@ -5,11 +5,8 @@
   "readme": "README.md",
   "main": "Gruntfile.js",
   "scripts": {
-    "pre_start": "grunt init",
-    "start": "concurrent \"npm run grunt:dev\" \"npm run lite\"",
-    "dist": "concurrent \"npm run grunt:dist\" \"npm run lite\"",
-    "publish": "grunt dist",
-    "lite": "lite-server",
+    "start": "npm run grunt:dev",
+    "publish": "npm run grunt:dist",
     "tsc": "tsc",
     "grunt": "grunt",
     "grunt:dev": "grunt dev",
@@ -35,8 +32,8 @@
     "zone.js": "^0.5.15"
   },
   "devDependencies": {
-    "concurrently": "^2.0.0",
     "grunt": "^0.4.5",
+    "grunt-browser-sync": "^2.2.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-concat": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
