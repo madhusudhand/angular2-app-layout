@@ -2,6 +2,7 @@ module.exports = function(grunt){
 
   //load build config file
   const build_config = require('./build.config.js');
+  const libraries = require('./libraries.js');
 
   //grunt config
   var config = {
@@ -115,25 +116,11 @@ module.exports = function(grunt){
     },
 
     copy: {
-      modules: {
+      lib: {
         expand: true,
+        // flatten: true,
         cwd: 'node_modules/',
-        src: ['angular2/**', 'rxjs/**'],
-        dest: '<%= build_dir %>/'
-      },
-      dependencies: {
-        expand: true,
-        flatten: true,
-        cwd: 'node_modules/',
-        src: [
-              'angular2/es6/dev/src/testing/shims_for_IE.js',
-              'angular2/bundles/angular2-polyfills.js',
-              'angular2/bundles/angular2.dev.js',
-              'rxjs/bundles/Rx.js',
-              'systemjs/dist/system.src.js',
-              'systemjs/dist/system-polyfills.js',
-              'es6-shim/es6-shim.min.js'
-             ],
+        src: '<%= libraries %>',
         dest: '<%= build_dir %>/lib/'
       },
       assets: {
@@ -186,7 +173,8 @@ module.exports = function(grunt){
         },
         options: {
           watchTask: true,
-          server: './<%= build_dir %>'
+          server: './<%= build_dir %>',
+          reloadDelay: 1000
         }
       }
     }
@@ -206,7 +194,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-browser-sync');
 
 
-  grunt.initConfig(grunt.util._.extend(config, build_config));
+  grunt.initConfig(grunt.util._.extend(config, build_config, libraries));
 
   grunt.registerTask('default', ['clean:pre_build']);
   grunt.registerTask('postinstall', ['copy:dependencies']);
@@ -216,8 +204,7 @@ module.exports = function(grunt){
     'ts',
     'concat:sass',
     'sass',
-    'copy:assets',
-    'copy:dev',
+    'copy',
     'browserSync',
     'watch'
   ]);
