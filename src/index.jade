@@ -3,18 +3,13 @@ html
   head
     title Angular 2 App
     meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(charset="utf-8")
+    base(href="/")
     //- link(rel="stylesheet" href="app.min.css")
   body
     app
       include _init
     
-
-    
-    //- script(src="app.min.js")
-
-      
-    //- 1. Load libraries
-    //- IE required polyfills, in this exact order
     script(src="./lib/es6-shim/es6-shim.min.js")
     script(src="./lib/systemjs/dist/system-polyfills.js")
     script(src="./lib/angular2/es6/dev/src/testing/shims_for_IE.js")
@@ -23,20 +18,18 @@ html
     script(src="./lib/systemjs/dist/system.src.js")
     script(src="./lib/rxjs/bundles/Rx.js")
     script(src="./lib/angular2/bundles/angular2.dev.js")
+    script(src="./lib/angular2/bundles/http.dev.js")
+    script(src="./lib/angular2/bundles/router.dev.js")
 
     script
       | System.config({
-      |   defaultJSExtensions: true,
+      //- |   defaultJSExtensions: true,
       |   packages: {        
       |     app: {
       |       format: 'register',
       |       defaultExtension: 'js'
       |     }
-      |   },
-      |   map: {
-      |     'angular2': 'lib/angular2',
-      |     'rxjs': 'lib/rxjs'
       |   }
       | });
-      | System.import('bootstrap')
+      | System.import('bootstrap.js')
       |       .then(null, console.error.bind(console));

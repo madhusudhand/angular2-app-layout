@@ -53,16 +53,7 @@ module.exports = function(grunt){
 
     ts: {
       dist: {
-        src: ['<%= app_dir %>/**/*.ts'],
-        dest: '<%= temp_dir %>',
-        options: {
-          module: 'system',
-          moduleResolution: 'node',
-          target: 'es5',
-          experimentalDecorators: true,
-          emitDecoratorMetadata: true,
-          noImplicitAny: false
-        }
+        tsconfig: './src/tsconfig.json'
       }
     },
 
