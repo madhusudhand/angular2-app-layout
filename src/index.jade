@@ -10,20 +10,19 @@ html
     app
       include _init
     
-    script(src="./lib/es6-shim/es6-shim.min.js")
-    script(src="./lib/systemjs/dist/system-polyfills.js")
-    script(src="./lib/angular2/es6/dev/src/testing/shims_for_IE.js")
+    script(src="./vendor/es6-shim/es6-shim.min.js")
+    script(src="./vendor/systemjs/dist/system-polyfills.js")
+    script(src="./vendor/angular2/es6/dev/src/testing/shims_for_IE.js")
 
-    script(src="./lib/angular2/bundles/angular2-polyfills.js")
-    script(src="./lib/systemjs/dist/system.src.js")
-    script(src="./lib/rxjs/bundles/Rx.js")
-    script(src="./lib/angular2/bundles/angular2.dev.js")
-    script(src="./lib/angular2/bundles/http.dev.js")
-    script(src="./lib/angular2/bundles/router.dev.js")
+    script(src="./vendor/angular2/bundles/angular2-polyfills.js")
+    script(src="./vendor/systemjs/dist/system.src.js")
+    script(src="./vendor/rxjs/bundles/Rx.js")
+    script(src="./vendor/angular2/bundles/angular2.dev.js")
+    script(src="./vendor/angular2/bundles/http.dev.js")
+    script(src="./vendor/angular2/bundles/router.dev.js")
 
     script
       | System.config({
-      //- |   defaultJSExtensions: true,
       |   packages: {        
       |     app: {
       |       format: 'register',

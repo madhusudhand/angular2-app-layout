@@ -1,8 +1,8 @@
 module.exports = function(grunt){
 
   //load build config file
-  const build_config = require('./build.config.js');
-  const libraries = require('./libraries.js');
+  const build_config = require('./build.config.json');
+  const libraries = require('./src/libraries.json');
 
   //grunt config
   var config = {
@@ -12,7 +12,7 @@ module.exports = function(grunt){
       options: {
         force: true
       },
-      pre_build: ['<%= build_dir %>/*', '!<%= build_dir %>/node_modules', '<%= temp_dir %>'],
+      pre_build: ['<%= build_dir %>', '<%= temp_dir %>'],
       post_build: ['<%= temp_dir %>']
     },
 
@@ -107,12 +107,17 @@ module.exports = function(grunt){
     },
 
     copy: {
-      lib: {
+      vendor: {
         expand: true,
-        // flatten: true,
         cwd: 'node_modules/',
-        src: '<%= libraries %>',
-        dest: '<%= build_dir %>/lib/'
+        src: '<%= vendor %>',
+        dest: '<%= build_dir %>/vendor/'
+      },
+      thirdparty: {
+        expand: true,
+        cwd: 'node_modules/',
+        src: '<%= thirdparty %>',
+        dest: '<%= build_dir %>/thirdparty/'
       },
       assets: {
         expand: true,
@@ -164,8 +169,7 @@ module.exports = function(grunt){
         },
         options: {
           watchTask: true,
-          server: './<%= build_dir %>',
-          reloadDelay: 1000
+          server: './<%= build_dir %>'
         }
       }
     }
