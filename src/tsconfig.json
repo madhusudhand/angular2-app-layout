@@ -5,7 +5,7 @@
     "module": "system",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "../build/",
+    "outDir": "../dist/",
     "mapRoot": "",
     "rootDir": "./src",
     "sourceRoot": "/",

@@ -1,6 +1,6 @@
 node_modules/
 .tscache/
-build/
+dist/
 tmp/
 npm-debug.log
 src/.baseDir.ts

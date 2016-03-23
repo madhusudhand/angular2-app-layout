@@ -1,5 +1,5 @@
 module.exports = {
-  build_dir: 'build',
+  build_dir: 'dist',
   temp_dir: 'tmp',
 
   app_dir: 'src',
