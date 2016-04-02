@@ -1,4 +1,7 @@
-# Angular-2 Quick start
+# This is no longer maintained here. 
+> It has been moved to [angular2-cli][ng2], a Command Line Interface for developing Angular 2 apps.
+
+## Angular-2 Quick start
 
 This repo lets you kick start your Angular-2 app **super fast**.
 
@@ -89,6 +92,7 @@ License
 
 
    [angular]: <angular.io>
+   [ng2]: <https://github.com/madhusudhand/angular2-cli>
    [ut]: <https://docs.angularjs.org/guide/unit-testing>
    [ts]: <http://www.typescriptlang.org>
    [jade]: <http://jade-lang.com>
